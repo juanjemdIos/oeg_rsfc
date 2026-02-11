@@ -182,6 +182,12 @@ And additionally, if you want to run only one test, you can indicate the test id
 rsfc --repo <repo_url> --id <test_id>
 ```
 
+RSFC also offers the possibility of using a personal Github token to avoid a rate limit issue with the Github API
+
+```
+rsfc --repo <repo_url> -t <token>
+```
+
 ## Docker installation
 
 RSFC also offers a Dockerfile which you can build using the following commmand:
@@ -193,7 +199,7 @@ docker build -t --no-cache -t rsfc-docker .
 For comodity, we provide a bash script that runs the container along with the necessary configurations. To execute it just run
 
 ```
-./run_rsfc.sh --repo <repo_url> [--ftr] [--id <test_id>]
+./run_rsfc.sh --repo <repo_url> [--ftr] [--id <test_id>] [-t <token>]
 ```
 
 The parameters used for the script are the same as if you executed RSFC normally
