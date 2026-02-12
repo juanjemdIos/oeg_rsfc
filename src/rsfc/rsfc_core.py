@@ -7,11 +7,11 @@ from rsfc.harvesters import cff_harvester as cf
 from rsfc.harvesters import github_harvester as gt
 
 
-def start_assessment(repo_url, ftr, test_id):
+def start_assessment(repo_url, ftr, test_id, token):
     
-    gh = gt.GithubHarvester(repo_url)
+    gh = gt.GithubHarvester(repo_url, token)
     sw = soft.AssessedSoftware(repo_url, gh)
-    somef = som.SomefHarvester(repo_url)
+    somef = som.SomefHarvester(repo_url, token)
     code = cm.CodemetaHarvester(gh)
     cff = cf.CFFHarvester(gh)
     
@@ -22,7 +22,7 @@ def start_assessment(repo_url, ftr, test_id):
     
     assess = asmt.Assessment(checks)
     
-    rsfc_asmt = assess.render_template(sw, ftr)
+    rsfc_asmt = assess.render_template(sw, ftr, test_id)
     table = assess.to_terminal_table(test_id)
     
     return rsfc_asmt, table

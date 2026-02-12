@@ -35,6 +35,7 @@ SWHID_SCHEMA_REGEX = r'^swh:1:[a-z]+:[0-9a-f]{40}$'
 URN_SCHEMA_REGEX = r'^urn:[a-z0-9][a-z0-9-]{1,31}:[\w\-.:\/?#\[\]@!$&\'()*+,;=]+$'
 GITHUB_SCHEMA_REGEX = r'^https?://github\.com/[^/]+/[^/]+/?$'
 ZENODO_BADGE_REGEX = r'^https?://zenodo\.org/badge/latestdoi/\d+$'
+DOI_URL_REGEX = r'^https?://doi\.org/10\.\d{4,9}/[-._;()/:A-Z0-9]+$'
 
 
 #Processes
@@ -419,7 +420,7 @@ CHECKERS_DICT = {
     'rsfc' : {
         'name' : 'RSFC',
         'id' : 'https://w3id.org/rsfc/',
-        'version' : '0.1.0'
+        'version' : '0.1.2'
     }
 }
 
@@ -474,5 +475,6 @@ ID_SCHEMA_REGEX_LIST = [
     SWHID_SCHEMA_REGEX,
     URN_SCHEMA_REGEX,
     GITHUB_SCHEMA_REGEX,
-    ZENODO_BADGE_REGEX
+    ZENODO_BADGE_REGEX,
+    DOI_URL_REGEX
 ]

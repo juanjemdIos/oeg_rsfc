@@ -7,18 +7,34 @@ import os
 
 class SomefHarvester:
     
-    def __init__(self, repo_url):
-        self.somef_configure()
+    def __init__(self, repo_url, token):
+        self.somef_configure(token)
         self.somef_data = self.somef_assessment(repo_url, 0.8)
         
         
-    def somef_configure(self):
+    def somef_configure(self, token):
         
         print("Configuring SOMEF...")
+        
+        if token:
+            configure = ["somef", "configure"]
+            stdin_data = (
+            f"{token}\n" #To deal with the inputs asked by somef configure
+            "\n"
+            "\n"
+            "\n"
+            "\n"
+            "\n"
+            )
+        else:
+            configure = ["somef", "configure", "-a"]
+            stdin_data = None
 
         try:
             subprocess.run(
-                ["somef", "configure", "-a"],
+                configure,
+                input=stdin_data,
+                text=True,
                 check=True,
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL
