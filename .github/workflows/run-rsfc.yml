@@ -74,7 +74,12 @@ jobs:
             const job = jobs.data.jobs[jobs.data.jobs.length - 1]
             core.setOutput("job_id", job.id)
       - name: Create neutral check
-        if: ${{ github.event_name == 'pull_request' }}
+        # if: ${{ github.event_name == 'pull_request' }}
+        if: >
+          ${{
+            github.event_name == 'pull_request' &&
+            github.event.pull_request.head.repo.full_name == github.repository
+          }}
         uses: actions/github-script@v7
         with:
           script: |
